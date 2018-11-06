@@ -1,0 +1,33 @@
+.chat{
+    border: 2px solid black;
+    position: relative;
+    margin-left: 10px;
+    bottom: 0;
+    width: 200px;
+    height: 300px;
+}
+.messageInput{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.messageButton{
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+.messageBox{
+    height:250px;
+    border-bottom:1px solid black;
+    overflow: auto;
+}
+.chatUsername{
+    border-bottom: 1px solid black;
+    margin: 2px;
+    text-align: center;
+}
+.closeButton{
+    position: absolute;
+    top:0;
+    right: 5px;
+}
