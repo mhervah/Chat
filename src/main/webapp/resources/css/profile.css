@@ -2,9 +2,9 @@
     border: 2px solid black;
     position: relative;
     margin-left: 10px;
-    bottom: 0;
     width: 200px;
     height: 300px;
+    float: right;
 }
 .messageInput{
     position: absolute;
@@ -30,4 +30,44 @@
     position: absolute;
     top:0;
     right: 5px;
+}
+.users{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    text-align: left;
+    border: 2px solid black;
+    max-height: 600px;
+    overflow: auto;
+}
+.users ul{
+    list-style: none;
+}
+.chats{
+    position: absolute;
+
+    width: 100%;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+}
+.message{
+    background-color: lightgray;
+    border-radius: 5px;
+}
+.myMessage{
+    background-color: deepskyblue;
+    text-align: right;
+}
+.usersList li{
+    cursor: pointer;
+}
+
+.closeButton{
+    cursor: pointer;
+    background-color: darkblue;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
 }

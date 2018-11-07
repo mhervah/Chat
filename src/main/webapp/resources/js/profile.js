@@ -23,63 +23,62 @@ $(document).ready(function () {
 
             var data = JSON.parse(this.responseText);
             for (let key in data) {
+                var li = document.createElement("li");
+                li.setAttribute("id", key);
+                li.innerText = key;
+                let chatopen = false;
+                li.onclick = function (e) {
+                    let username2 = e.toElement.id;
+                    if (!chatopen) {
+                        let div = document.createElement("div");
+                        div.setAttribute("id", "chat" + username2);
+                        let p = document.createElement("p");
+                        p.innerText = username2;
+                        p.setAttribute("class", "chatUsername");
+                        let close = document.createElement("span");
+                        close.innerText = 'x';
+                        close.setAttribute("class", "closeButton");
+                        close.setAttribute("id", "close" + username2);
+                        close.onclick = function (e) {
+                            closeChat(username2);
+                            chatopen = false;
+                            requestMessages(username, username2, chatopen);
+                        };
 
+                        div.appendChild(p);
+                        div.appendChild(close);
+                        div.setAttribute("class", "chat");
+                        let messageBox = document.createElement("div");
+                        messageBox.setAttribute("id", "box" + username2);
+                        messageBox.setAttribute("class", "messageBox");
+                        div.appendChild(messageBox);
+                        let input = document.createElement("input");
+                        input.setAttribute("id", "input" + username2);
+                        input.setAttribute("type", "text");
+                        input.setAttribute("class", "messageInput");
+                        div.appendChild(input);
+                        let button = document.createElement("input");
+                        button.setAttribute("id", "button" + username2);
+                        button.setAttribute("type", "button");
+                        button.setAttribute("value", "Send");
+                        button.setAttribute("class", "messageButton");
+                        button.onclick = function (e) {
+                            let text = document.getElementById("input" + username2).value;
+                            if (text !== "") {
+                                sendMessage(username, username2, text);
+                            }
+                        };
+                        div.appendChild(button);
 
-                if (key !== username) {
-                    var li = document.createElement("li");
-                    li.setAttribute("id", key);
-                    li.innerText = key;
-                    let chatopen = false;
-                    li.onclick = function (e) {
-                        let username2 = e.toElement.id;
-                        if (!chatopen) {
-                            let div = document.createElement("div");
-                            div.setAttribute("id", "chat" + username2);
-                            let p = document.createElement("p");
-                            p.innerText = username2;
-                            p.setAttribute("class", "chatUsername");
-                            let close = document.createElement("span");
-                            close.innerText = 'x';
-                            close.setAttribute("class", "closeButton");
-                            close.setAttribute("id", "close" + username2);
-                            close.onclick = function (e) {
-                                closeChat(username2);
-                                chatopen = false;
-                            };
+                        document.getElementById("chats").appendChild(div);
+                        chatopen = true;
+                        requestMessages(username, username2, chatopen);
 
-                            div.appendChild(p);
-                            div.appendChild(close);
-                            div.setAttribute("class", "chat");
-                            let messageBox = document.createElement("div");
-                            messageBox.setAttribute("id", "box" + username2);
-                            messageBox.setAttribute("class", "messageBox");
-                            div.appendChild(messageBox);
-                            let input = document.createElement("input");
-                            input.setAttribute("id", "input" + username2);
-                            input.setAttribute("type", "text");
-                            input.setAttribute("class", "messageInput");
-                            div.appendChild(input);
-                            let button = document.createElement("input");
-                            button.setAttribute("id", "button" + username2);
-                            button.setAttribute("type", "button");
-                            button.setAttribute("value", "Send");
-                            button.setAttribute("class", "messageButton");
-                            button.onclick = function (e) {
-                                let text = document.getElementById("input" + username2).value;
-                                if (text !== "") {
-                                    sendMessage(username, username2, text);
-                                }
-                            };
-                            div.appendChild(button);
-
-                            document.body.appendChild(div);
-                            getMessages(username, username2);
-                            chatopen = true;
-                        }
-                    };
-                    list.appendChild(li);
-                }
+                    }
+                };
+                list.appendChild(li);
             }
+
 
         }
     };
@@ -118,56 +117,37 @@ function sendMessage(sender, reciever, text) {
 
 }
 function getMessages(user1, user2) {
-    var box = document.getElementById("box" + user2);
 
-    box.innerHTML = "";
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = JSON.parse(this.responseText);
-            for (let i = 0; i < data.length; i++) {
-                let p = document.createElement("p");
-                p.setAttribute("class", "message");
-                p.setAttribute("id", data[i]["id"]);
-                p.innerText = data[i]["text"];
-                let span = document.createElement("span");
-                span.innerText = " edit";
-                span.setAttribute("id", "edit" + data[i]["id"]);
-                p.appendChild(span);
-                span.onclick = function (e) {
-
-                    let messageId = e.path[1].id;
-                    let text = p.firstChild.textContent;
-                    console.log(text);
-                    let editInput = document.createElement("input");
-                    editInput.setAttribute("type", "text");
-                    editInput.setAttribute("id", "editInput" + messageId);
-                    editInput.value = text;
-                    p.innerText = "";
-                    p.appendChild(editInput);
-                    let saveButton = document.createElement("input");
-                    saveButton.setAttribute("type", "button");
-                    saveButton.setAttribute("id", "save" + messageId);
-                    saveButton.setAttribute("value", "Save");
-                    saveButton.onclick = function (e) {
-
-                        editMessage(messageId, document.getElementById("editInput" + messageId).value, user1, user2);
+            var box = document.getElementById("box" + user2);
+            if (box) {
+                box.innerHTML = "";
+                for (let i = 0; i < data.length; i++) {
+                    let paragraphElement = document.createElement("p");
+                    paragraphElement.setAttribute("class", "message");
+                    paragraphElement.setAttribute("id", data[i]["id"]);
+                    paragraphElement.innerText = data[i]["text"];
+                    if (data[i]["sender"] === user1)
+                        paragraphElement.setAttribute("class", "message myMessage");
+                    let span = document.createElement("span");
+                    span.innerText = " edit";
+                    span.setAttribute("id", "edit" + data[i]["id"]);
+                    paragraphElement.appendChild(span);
+                    span.onclick = edit;
+                    span = document.createElement("span");
+                    span.innerText = " delete";
+                    span.setAttribute("id", "delete" + data[i]["id"]);
+                    paragraphElement.appendChild(span);
+                    span.onclick = function (e) {
+                        deleteMessage(e.path[1].id, user1, user2);
                     };
-                    p.appendChild(saveButton);
-
-
-                };
-                span = document.createElement("span");
-                span.innerText = " delete";
-                span.setAttribute("id", "delete" + data[i]["id"]);
-                p.appendChild(span);
-                span.onclick = function (e) {
-                    let messageId = e.path[1].id;
-                    deleteMessage(messageId, user1, user2);
-                };
-                box.appendChild(p);
+                    box.appendChild(paragraphElement);
+                }
             }
-            console.log();
+
         }
     };
     xhttp.open("get", "/messages?user1=" + user1 + "&user2=" + user2, true);
@@ -181,14 +161,14 @@ function editMessage(id, text, sender, reciever) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            getMessages(sender,reciever);
+            getMessages(sender, reciever);
         }
     };
     xhttp.open("put", "/messages", true);
     let messageInfo = {
-        "id":id,
+        "id": id,
         "text": text,
-        "sender" : sender,
+        "sender": sender,
         "reciever": reciever
 
     };
@@ -203,13 +183,13 @@ function deleteMessage(id, sender, reciever) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            getMessages(sender,reciever);
+            getMessages(sender, reciever);
         }
     };
     xhttp.open("delete", "/messages", true);
     let messageInfo = {
-        "id":id,
-        "sender" : sender,
+        "id": id,
+        "sender": sender,
         "reciever": reciever
 
     };
@@ -218,3 +198,41 @@ function deleteMessage(id, sender, reciever) {
 
 }
 
+function requestMessages(user1, user2, isChatOpen) {
+    console.log(isChatOpen);
+    if (!isChatOpen)
+        return;
+
+
+    setTimeout(function () {
+        if (isChatOpen)
+            getMessages(user1, user2);
+        else
+            return;
+        requestMessages(user1, user2, isChatOpen);
+    }, 2000);
+}
+
+function edit(e) {
+
+    let messageId = e.path[1].id;
+    let text = paragraphElement.firstChild.textContent;
+    console.log(text);
+    let editInput = document.createElement("input");
+    editInput.setAttribute("type", "text");
+    editInput.setAttribute("id", "editInput" + messageId);
+    editInput.value = text;
+    paragraphElement.innerText = "";
+    paragraphElement.appendChild(editInput);
+    let saveButton = document.createElement("input");
+    saveButton.setAttribute("type", "button");
+    saveButton.setAttribute("id", "save" + messageId);
+    saveButton.setAttribute("value", "Save");
+    saveButton.onclick = function (e) {
+
+        editMessage(messageId, document.getElementById("editInput" + messageId).value, user1, user2);
+    };
+    paragraphElement.appendChild(saveButton);
+
+
+};
