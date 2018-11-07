@@ -1,8 +1,8 @@
 package com.synisys.chat.servlets;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.synisys.chat.dao.ChatDao;
-import com.synisys.chat.models.Chat;
 import com.synisys.chat.models.Message;
 import com.synisys.chat.models.Pair;
 import com.synisys.chat.models.User;
@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
-import static com.synisys.chat.dao.ChatDao.chats;
-
+import static com.synisys.chat.services.ChatServiceImp.chatService;
 import static com.synisys.chat.services.UserServiceImp.userService;
 
 public class MessageServlet extends HttpServlet {
@@ -30,8 +30,8 @@ public class MessageServlet extends HttpServlet {
         String username2 = message.getReciever();
         User user1 = userService.getUser(username1);
         User user2 = userService.getUser(username2);
-        Chat chat = ChatDao.getChat(new Pair(user1,user2));
-        chat.addMessage(message);
+        ChatDao.getChat(new Pair(user1,user2)).add(message);
+
 
        // messageService.addMessage(message);
     }
@@ -44,19 +44,42 @@ public class MessageServlet extends HttpServlet {
         User user1 = userService.getUser(username1);
         User user2 = userService.getUser(username2);
         Pair pair = new Pair(user1,user2);
-        Chat chat = ChatDao.getChat(pair);
+
+        List<Message> chat = ChatDao.getChat(pair);
         if(chat == null)
         {
-            ChatDao.addChat(pair);
-            chat = ChatDao.getChat(pair);
+            chatService.addChat(pair);
+            chat = chatService.getChat(pair);
         }
 
         resp.setContentType("application/json");
-        String json = new Gson().toJson(chat.getMessagelist(), ArrayList.class);
+        String json = new Gson().toJson(chat, ArrayList.class);
         resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.print(json);
         out.flush();
         out.close();
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Gson gson = new Gson();
+        JsonObject json = gson.fromJson(req.getReader(), JsonObject.class);
+       int id =json.get("id").getAsInt();
+        User sender = userService.getUser(json.get("sender").getAsString());
+        User reciever = userService.getUser(json.get("reciever").getAsString());
+        Pair pair = new Pair(sender,reciever);
+        chatService.editMessage(pair,id,json.get("text").getAsString());
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Gson gson = new Gson();
+        JsonObject json = gson.fromJson(req.getReader(), JsonObject.class);
+        int id =json.get("id").getAsInt();
+        User sender = userService.getUser(json.get("sender").getAsString());
+        User reciever = userService.getUser(json.get("reciever").getAsString());
+        Pair pair = new Pair(sender,reciever);
+        chatService.removeMessage(pair,id);
     }
 }

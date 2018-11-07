@@ -4,8 +4,9 @@ import com.synisys.chat.models.User;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-public class Message implements Serializable{
+public class Message implements Serializable {
     private int id;
     private static int counter = 0;
     private String text;
@@ -13,11 +14,12 @@ public class Message implements Serializable{
     private String reciever;
     private Date date;
     private boolean edited;
-    public Message(){
+
+    public Message() {
         this.id = counter++;
     }
 
-    public Message(String text, String sender, String reciever, Date date){
+    public Message(String text, String sender, String reciever, Date date) {
         this.text = text;
         this.sender = sender;
         this.reciever = reciever;
@@ -30,10 +32,10 @@ public class Message implements Serializable{
         return id;
     }
 
-
     public void setEdited(boolean edited) {
         this.edited = edited;
     }
+
     public String getReciever() {
         return reciever;
     }
