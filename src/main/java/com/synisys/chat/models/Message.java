@@ -12,14 +12,15 @@ public class Message implements Serializable {
     private String text;
     private String sender;
     private String reciever;
-    private Date date;
+    private long date;
     private boolean edited;
+    private boolean deleted;
 
     public Message() {
         this.id = counter++;
     }
 
-    public Message(String text, String sender, String reciever, Date date) {
+    public Message(String text, String sender, String reciever, long date) {
         this.text = text;
         this.sender = sender;
         this.reciever = reciever;
@@ -28,8 +29,20 @@ public class Message implements Serializable {
         this.id = counter++;
     }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public boolean isEdited() {
+        return edited;
     }
 
     public void setEdited(boolean edited) {
@@ -48,12 +61,12 @@ public class Message implements Serializable {
         return sender;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(long time) {
+        this.date = time;
     }
 
     public void setSender(String sender) {
