@@ -1,0 +1,91 @@
+.chat{
+    border: 2px solid black;
+    position: relative;
+    margin-left: 10px;
+    width: 200px;
+    height: 300px;
+    float: right;
+}
+.messageInput{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.messageButton{
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+.messageBox{
+    height:250px;
+    border-bottom:1px solid black;
+    overflow: auto;
+}
+.chatUsername{
+    border-bottom: 1px solid black;
+    margin: 2px;
+    text-align: center;
+}
+.closeButton{
+    position: absolute;
+    top:0;
+    right: 5px;
+}
+.users{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    text-align: left;
+    border: 2px solid black;
+    max-height: 600px;
+    overflow: auto;
+}
+.users ul{
+    list-style: none;
+}
+.chats{
+    position: absolute;
+
+    width: 100%;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+}
+.messageDiv{
+    padding: 5px;
+    clear: both;
+}
+.message{
+    background-color: lightgray;
+    border-radius: 5px;
+    min-height: 50px;
+    padding: 5px;
+    margin: 5px 0;
+    overflow-wrap: break-word;
+}
+.editLink, .deleteLink, .messageDate{
+    font-size: 12px;
+    color: gray;
+}
+.deleteLink{
+    margin-left: 3px;
+}
+.messageDate{
+    margin-left: 5px;
+}
+.myMessage{
+    background-color: deepskyblue;
+    text-align: right;
+}
+.usersList li{
+    cursor: pointer;
+}
+
+.closeButton{
+    cursor: pointer;
+    background-color: darkblue;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+}

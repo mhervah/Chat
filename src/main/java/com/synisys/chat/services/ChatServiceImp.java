@@ -6,6 +6,8 @@ import com.synisys.chat.models.Message;
 import com.synisys.chat.models.Pair;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,34 +15,65 @@ import java.util.List;
  */
 public class ChatServiceImp implements ChatService {
     public static ChatServiceImp chatService = new ChatServiceImp();
+    ChatDao chatDao;
 
-    private ChatServiceImp(){
-
+    private ChatServiceImp() {
+        chatDao = new ChatDao();
     }
 
     @Override
     public void addMessage(Pair pair, Message message) {
-        ChatDao.addMessage(pair,message);
+        chatDao.addMessage(pair, message);
     }
 
     @Override
     public void removeMessage(Pair pair, int messageId) {
-        ChatDao.removeMessage(pair,messageId);
+        chatDao.removeMessage(pair, messageId);
     }
 
     @Override
     public void editMessage(Pair pair, int messageId, String newText) {
-        ChatDao.editMessage(pair,messageId, newText);
+        chatDao.editMessage(pair, messageId, newText);
     }
 
     @Override
     public List<Message> getChat(Pair pair) {
-        return ChatDao.getChat(pair);
+        return chatDao.getChat(pair);
     }
 
     @Override
     public void addChat(Pair pair) {
-        ChatDao.addChat(pair);
+        chatDao.addChat(pair);
     }
 
+    @Override
+    public List<Message> getChatFromDate(Pair pair, long date) {
+        List<Message> list = new ArrayList<>();
+        for (Message message : getChat(pair)) {
+            if (message.getDate() > date ) {
+                list.add(message);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Message> getDeleted(Pair pair) {
+        List<Message> list = new ArrayList<>();
+        for (Message message:chatService.getChat(pair)) {
+            if(message.isDeleted())
+                list.add(message);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Message> getEdited(Pair pair) {
+        List<Message> list = new ArrayList<>();
+        for (Message message:chatService.getChat(pair)) {
+            if(message.isEdited())
+                list.add(message);
+        }
+        return list;
+    }
 }

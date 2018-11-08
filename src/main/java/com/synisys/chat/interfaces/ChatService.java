@@ -3,6 +3,7 @@ package com.synisys.chat.interfaces;
 import com.synisys.chat.models.Message;
 import com.synisys.chat.models.Pair;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,4 +15,7 @@ public interface ChatService {
     void editMessage(Pair pair, int messageId, String newMessage);
     void addChat(Pair pair);
     List<Message> getChat(Pair pair);
+    List<Message> getChatFromDate(Pair pair, long date);
+    List<Message> getDeleted(Pair pair);
+    List<Message> getEdited(Pair pair);
 }
