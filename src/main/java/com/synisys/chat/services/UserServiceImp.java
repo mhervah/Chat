@@ -23,7 +23,6 @@ public class UserServiceImp implements com.synisys.chat.interfaces.UserService {
         user.setId(index++);
         userDao.addUser(user);
 
-
     }
 
     @Override

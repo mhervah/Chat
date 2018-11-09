@@ -15,6 +15,7 @@ public class Message implements Serializable {
     private long date;
     private boolean edited;
     private boolean deleted;
+    private boolean isRead;
 
     public Message() {
         this.id = counter++;
@@ -77,5 +78,15 @@ public class Message implements Serializable {
         this.text = text;
     }
 
+    public void setRead() {
+        isRead = true;
+    }
 
+    public boolean getIsRead() {
+        return isRead;
+    }
+
+    public boolean isSender(String username){
+        return this.sender.equals(username);
+    }
 }
