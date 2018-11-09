@@ -3,10 +3,7 @@ package com.synisys.chat.dao;
 import com.synisys.chat.models.Message;
 import com.synisys.chat.models.Pair;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.synisys.chat.services.ChatServiceImp.chatService;
 
@@ -42,6 +39,29 @@ public class ChatDao {
         }
     }
 
+    public  Integer notReadMessage(Pair pair, String receiver) {
+        int i = 0;
+        List<Message> chat = chats.get(pair); //message of pair
+        Iterator<Message> iterator = chat.iterator();
+        while (iterator.hasNext()) {
+            Message next = iterator.next();
+            if (next.isSender(receiver) && next.getIsRead() == false) {
+                ++i;
+            }
+        }
+        return i;    // receiver in pair not readed message
+    }
+
+    public Map<String, Integer> listNotReadedMessageForSender(String sender) {
+        Map<String, Integer> map = new HashMap<>();
+        for (Map.Entry<Pair, List<Message>> entry : chats.entrySet()) {
+            if (entry.getKey().isUserInPair(sender)) {
+                String key = entry.getKey().interceptUser(sender);
+                map.put(key, notReadMessage(entry.getKey(), key));
+            }
+        }
+        return map;
+    }
 
     public List<Message> getChat(Pair pair) {
         return chats.get(pair);

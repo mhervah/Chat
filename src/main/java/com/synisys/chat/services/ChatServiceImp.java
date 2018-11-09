@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mher.vahramyan on 11/1/2018.
  */
 public class ChatServiceImp implements ChatService {
     public static ChatServiceImp chatService = new ChatServiceImp();
-    ChatDao chatDao;
-
-    private ChatServiceImp() {
+    private ChatDao chatDao;
+    private ChatServiceImp(){
         chatDao = new ChatDao();
     }
 
@@ -76,4 +76,21 @@ public class ChatServiceImp implements ChatService {
         }
         return list;
     }
+     public int notReadMessage(Pair pair, String receiver){
+        int i=0;
+        List<Message> chat = chatDao.getChat(pair); //message of pair
+        Iterator<Message> iterator =chat.iterator();
+        while (iterator.hasNext()){
+            Message next = iterator.next();
+            if (!next.isSender(receiver)) {
+                i++;
+            }
+        }
+        return i++;    // receiver in pair not readed message
+    }
+
+    public Map<String, Integer> listNotReadedMessageForSender(String sender){
+        return chatDao.listNotReadedMessageForSender(sender);
+    }
 }
+

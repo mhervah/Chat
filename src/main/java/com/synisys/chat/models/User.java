@@ -1,6 +1,8 @@
 package com.synisys.chat.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
 
@@ -8,6 +10,16 @@ public class User {
     private String username;
 
     private transient String password;
+
+    private Map<String, Integer> countNotReadMessage;
+
+    {
+        countNotReadMessage = new HashMap<>();
+    }
+
+    public Map<String, Integer> getCountNotReadMessage() {
+        return countNotReadMessage;
+    }
 
     public User(String username, String password) {
         this.password = password;

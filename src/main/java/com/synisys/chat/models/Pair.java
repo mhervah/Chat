@@ -1,5 +1,7 @@
 package com.synisys.chat.models;
 
+import com.synisys.chat.exceptions.UserNotFoundException;
+
 /**
  * Created by mher.vahramyan on 11/5/2018.
  */
@@ -41,6 +43,19 @@ public class Pair {
         return user1;
     }
 
+    public boolean isUserInPair(String name){
+        return user1.getUsername().equals(name) || user2.getUsername().equals(name);
+    }
+
+    public String interceptUser(String username) {
+        if(isUserInPair(username)){
+            if (user2.getUsername().equals(username)) {
+                return user1.getUsername();
+            }
+            return user2.getUsername();
+        }
+        throw new UserNotFoundException();
+    }
 
     @Override
     public int hashCode() {
