@@ -89,11 +89,13 @@ $(document).ready(function () {
 
 
 });
+
 function closeChat(username) {
     let chat = document.getElementById("chat" + username);
     chat.parentNode.removeChild(chat);
 
 }
+
 function sendMessage(sender, reciever, text) {
     let box = document.getElementById("box" + reciever);
     let input = document.getElementById("input" + reciever);
@@ -116,6 +118,7 @@ function sendMessage(sender, reciever, text) {
     xhttp.send(JSON.stringify(messageInfo));
 
 }
+
 function getMessages(user1, user2) {
 
     var xhttp = new XMLHttpRequest();
@@ -126,25 +129,36 @@ function getMessages(user1, user2) {
             if (box) {
                 box.innerHTML = "";
                 for (let i = 0; i < data.length; i++) {
+                    let messageDiv = document.createElement("div");
+                    messageDiv.setAttribute("id", "message" + data[i]["id"]);
+                    messageDiv.setAttribute("class", "messageDiv");
                     let paragraphElement = document.createElement("p");
-                    paragraphElement.setAttribute("class", "message");
-                    paragraphElement.setAttribute("id", data[i]["id"]);
-                    paragraphElement.innerText = data[i]["text"];
                     if (data[i]["sender"] === user1)
                         paragraphElement.setAttribute("class", "message myMessage");
-                    let span = document.createElement("span");
-                    span.innerText = " edit";
-                    span.setAttribute("id", "edit" + data[i]["id"]);
-                    paragraphElement.appendChild(span);
-                    span.onclick = edit;
-                    span = document.createElement("span");
-                    span.innerText = " delete";
-                    span.setAttribute("id", "delete" + data[i]["id"]);
-                    paragraphElement.appendChild(span);
-                    span.onclick = function (e) {
+                    else
+                        paragraphElement.setAttribute("class", "message");
+                    paragraphElement.setAttribute("id", data[i]["id"]);
+                    paragraphElement.innerText = data[i]["text"];
+                    messageDiv.appendChild(paragraphElement);
+                    let editLink = document.createElement("a");
+                    editLink.innerText = "edit";
+                    editLink.setAttribute("id", "edit" + data[i]["id"]);
+                    editLink.setAttribute("class","editLink");
+                    messageDiv.appendChild(editLink);
+                    editLink.onclick = edit;
+                    let deleteLink = document.createElement("a");
+                    deleteLink.innerText = "delete";
+                    deleteLink.setAttribute("id", "delete" + data[i]["id"]);
+                    deleteLink.setAttribute("class","deleteLink");
+                    messageDiv.appendChild(deleteLink);
+                    deleteLink.onclick = function (e) {
                         deleteMessage(e.path[1].id, user1, user2);
                     };
-                    box.appendChild(paragraphElement);
+                    let messageDate = document.createElement("a");
+                    messageDate.setAttribute("class","messageDate");
+                    messageDate.innerText = data[i]["date"];
+                    messageDiv.appendChild(messageDate);
+                    box.appendChild(messageDiv);
                 }
             }
 
@@ -216,7 +230,7 @@ function requestMessages(user1, user2, isChatOpen) {
 function edit(e) {
 
     let messageId = e.path[1].id;
-    let text = paragraphElement.firstChild.textContent;
+    let text = paragraphElement.textContent;
     console.log(text);
     let editInput = document.createElement("input");
     editInput.setAttribute("type", "text");
