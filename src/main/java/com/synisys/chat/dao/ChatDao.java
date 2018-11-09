@@ -27,7 +27,7 @@ public class ChatDao {
     public void removeMessage(Pair pair, int messageId) {
         for (Message message : chats.get(pair)) {
             if (message.getId() == messageId) {
-                chats.get(pair).remove(message);
+                message.setDeleted(true);
                 return;
             }
         }

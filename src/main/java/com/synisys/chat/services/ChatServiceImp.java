@@ -50,7 +50,7 @@ public class ChatServiceImp implements ChatService {
     public List<Message> getChatFromDate(Pair pair, long date) {
         List<Message> list = new ArrayList<>();
         for (Message message : getChat(pair)) {
-            if (message.getDate() > date ) {
+            if (message.getDate() > date && !message.isDeleted()) {
                 list.add(message);
             }
         }

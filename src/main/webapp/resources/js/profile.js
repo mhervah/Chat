@@ -62,6 +62,7 @@ function renderUsers(data) {
                 getMessages(username2);
             }, 500);
             if (!chatopen) {
+
                 let div = document.createElement("div");
                 div.setAttribute("id", "chat" + username2);
                 let p = document.createElement("p");
@@ -104,6 +105,10 @@ function renderUsers(data) {
                 div.appendChild(button);
 
                 document.getElementById("chats").appendChild(div);
+
+
+                if(chats.get(username2))
+                    renderMessages(chats.get(username2),username2);
                 chatopen = true;
             }
         };
@@ -137,7 +142,7 @@ function sendMessage(reciever, text) {
 function getMessages(user2) {
     let chat = chats.get(user2);
 
-    let lastMessageDate = chat && chat.length > 0 ? chat[chat.length - 1]["date"] : 0;
+    let lastMessageDate = chat && chat.length > 0 ? chat[chat.length - 1]["date"] :  0;
     lastMessageDate = new Date(lastMessageDate);
     //console.log(typeof lastMessageDate);
     var xhttp = new XMLHttpRequest();
@@ -145,15 +150,15 @@ function getMessages(user2) {
         if (this.readyState == 4 && this.status == 200) {
             let data = JSON.parse(this.responseText);
             renderMessages(data, user2);
-            //console.log(data);
+
+
             if (chats.has(user2)) {
-                chats.set(user2, chats.get(user2).concat(data));
+                chats.set(user2, chats.get(user2).concat(data["new"]));
             } else {
-                chats.set(user2, data);
+                chats.set(user2, data["new"]);
             }
-            lastMessageDate = chat && chat.length > 0 ? chat[chat.length - 1]["date"] : 0;
+            lastMessageDate = chat && chat.length > 0 ? chat[chat.length - 1]["date"] :  0;
             lastMessageDate = new Date(lastMessageDate);
-            console.log(lastMessageDate);
         }
     };
     xhttp.open("get", "/messages?user2=" + user2 + "&date=" + (lastMessageDate ? lastMessageDate.getTime() : 0), false);
@@ -163,38 +168,85 @@ function getMessages(user2) {
 function renderMessages(messages, user2) {
     var box = document.getElementById("box" + user2);
     if (box) {
-        for (let i = 0; i < data.length; i++) {
-            let messageDiv = document.createElement("div");
-            messageDiv.setAttribute("id", "message" + data[i]["id"]);
-            messageDiv.setAttribute("class", "messageDiv");
-            let paragraphElement = document.createElement("p");
-            if (data[i]["sender"] === user1)
-                paragraphElement.setAttribute("class", "message myMessage");
-            else
-                paragraphElement.setAttribute("class", "message");
-            paragraphElement.setAttribute("id", data[i]["id"]);
-            paragraphElement.innerText = data[i]["text"];
-            messageDiv.appendChild(paragraphElement);
-            let editLink = document.createElement("a");
-            editLink.innerText = "edit";
-            editLink.setAttribute("id", "edit" + data[i]["id"]);
-            editLink.setAttribute("class","editLink");
-            messageDiv.appendChild(editLink);
-            editLink.onclick = edit;
-            let deleteLink = document.createElement("a");
-            deleteLink.innerText = "delete";
-            deleteLink.setAttribute("id", "delete" + data[i]["id"]);
-            deleteLink.setAttribute("class","deleteLink");
-            messageDiv.appendChild(deleteLink);
-            deleteLink.onclick = function (e) {
-                deleteMessage(e.path[1].id, user1, user2);
-            };
-            let messageDate = document.createElement("a");
-            messageDate.setAttribute("class","messageDate");
-            messageDate.innerText = data[i]["date"];
-            messageDiv.appendChild(messageDate);
-            box.appendChild(messageDiv);
+        if(messages["deleted"]){
+            for (let i = 0; i < messages["deleted"].length; i++) {
+                let chat = chats.get(user2);
+                for (let index in chat)
+                    if (messages["deleted"][i]["id"] === chat[index]["id"]) {
+                        chat.splice(index, 1);
+                    }
+            }
         }
+        if(messages["edited"]) {
+            for (let i = 0; i < messages["edited"].length; i++) {
+                if (chats.get(user2)) {
+                    for (let message of chats.get(user2)) {
+                        if (messages["edited"][i]["id"] === message["id"]) {
+                            if (messages["edited"][i]["text"] !== message["text"]) {
+                                let editedMessageText = document.getElementById(message["id"]);
+                                if(editedMessageText){
+                                    editedMessageText.innerText = messages["edited"][i]["text"];
+                                    let img = document.createElement("img");
+                                    img.setAttribute("src", "resources\\images\\hippo.png");
+                                    img.setAttribute("width", "40");
+                                    img.setAttribute("height", "40");
+                                    editedMessageText.appendChild(img);
+                                }
+                                message["edited"] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(messages["new"]){
+            for (let i = 0; i < messages["new"].length; i++) {
+                let messageDiv = document.createElement("div");
+                messageDiv.setAttribute("id", "message" + messages["new"][i]["id"]);
+
+                let paragraphElement = document.createElement("p");
+                if (messages["new"][i]["sender"] === username) {
+                    paragraphElement.setAttribute("class", "message myMessage");
+                    messageDiv.setAttribute("class", "messageDiv myMessageDiv");
+                } else {
+                    messageDiv.setAttribute("class", "messageDiv");
+                    paragraphElement.setAttribute("class", "message");
+                }
+
+                paragraphElement.setAttribute("id", messages["new"][i]["id"]);
+                paragraphElement.innerText = messages["new"][i]["text"];
+                messageDiv.appendChild(paragraphElement);
+                let editLink = document.createElement("a");
+                editLink.innerText = "edit";
+                editLink.setAttribute("id", "edit" + messages["new"][i]["id"]);
+                editLink.setAttribute("class", "editLink");
+                messageDiv.appendChild(editLink);
+                editLink.onclick = function (e) {
+                    let id = e.path[1].id;
+
+                    id = id.substr("message".length, id.length - 6);
+                    edit(e, user2, id);
+                };
+                let deleteLink = document.createElement("a");
+                deleteLink.innerText = "delete";
+                deleteLink.setAttribute("id", "delete" + messages["new"][i]["id"]);
+                deleteLink.setAttribute("class", "deleteLink");
+                messageDiv.appendChild(deleteLink);
+                deleteLink.onclick = function (e) {
+                    let id = e.path[1].id;
+
+                    id = id.substr("message".length, id.length - 6);
+                    deleteMessage(id, user2);
+                };
+                let messageDate = document.createElement("a");
+                messageDate.setAttribute("class", "messageDate");
+                let date = new Date(messages["new"][i]["date"]);
+                messageDate.innerText = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
+                messageDiv.appendChild(messageDate);
+                box.appendChild(messageDiv);
+            }
+        }
+
     }
 }
 function editMessage(id, text, reciever) {
@@ -203,7 +255,7 @@ function editMessage(id, text, reciever) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            for (let message in chats.get(reciever)) {
+            for (let message of chats.get(reciever)) {
                 if (message["id"] === id) {
                     message["text"] = text;
                     document.getElementById(id).innerText = text;
@@ -225,12 +277,11 @@ function editMessage(id, text, reciever) {
 }
 
 function deleteMessage(id, reciever) {
-
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-
+            let deletedMessage = document.getElementById("message"+id);
+            deletedMessage.parentNode.removeChild(deletedMessage);
         }
     };
     xhttp.open("delete", "/messages", true);
@@ -244,29 +295,28 @@ function deleteMessage(id, reciever) {
 
 }
 
-function edit(e, user2) {
-    let messageId = e.path[1].id;
+function edit(e, user2, messageId) {
+    let messageDiv =  document.getElementById("message" + messageId);
     let paragraphElement = document.getElementById(messageId);
 
 
     let text = paragraphElement.textContent;
-    console.log(text);
+
     let editInput = document.createElement("input");
     editInput.setAttribute("type", "text");
     editInput.setAttribute("id", "editInput" + messageId);
     editInput.value = text;
     paragraphElement.innerText = "";
-    paragraphElement.appendChild(editInput);
+
     let saveButton = document.createElement("input");
     saveButton.setAttribute("type", "button");
     saveButton.setAttribute("id", "save" + messageId);
     saveButton.setAttribute("value", "Save");
+    paragraphElement.appendChild(editInput);
     saveButton.onclick = function (e) {
         let newText = document.getElementById("editInput" + messageId).value;
         editMessage(messageId, newText, user2);
         paragraphElement.innerText = newText;
-        paragraphElement.removeChild(editInput);
-        paragraphElement.removeChild(saveButton);
     };
     paragraphElement.appendChild(saveButton);
 
