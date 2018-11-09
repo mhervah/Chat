@@ -87,7 +87,7 @@ function renderUsers(data) {
                 close.setAttribute("id", "close" + username2);
                 close.onclick = function (e) {
                     closeChat(username2);
-                    isChatsOpen.set(username2, false)
+                    isChatsOpen.set(e.toElement.textContent, false)
                     clearInterval(interval);
                 };
 
@@ -168,7 +168,7 @@ function getMessages(user2) {
             }
             lastMessageDate = chat && chat.length > 0 ? chat[chat.length - 1]["date"] : 0;
             lastMessageDate = new Date(lastMessageDate);
-
+            console.log(lastMessageDate);
         }
     };
     xhttp.open("get", "/messages?user2=" + user2 + "&date=" + (lastMessageDate ? lastMessageDate.getTime() : 0), false);
@@ -202,7 +202,7 @@ function renderMessages(messages, user2) {
             deleteLink.setAttribute("class", "deleteLink");
             messageDiv.appendChild(deleteLink);
             deleteLink.onclick = function (e) {
-                deleteMessage(e.path[1].id, user2);
+                deleteMessage(e.path[1].id, user1, user2);
             };
             let messageDate = document.createElement("a");
             messageDate.setAttribute("class", "messageDate");
@@ -274,6 +274,7 @@ function edit(e, user2) {
     let paragraphElement = document.getElementById(messageId);
 
     let text = paragraphElement.textContent;
+    console.log(text);
     let editInput = document.createElement("input");
     editInput.setAttribute("type", "text");
     editInput.setAttribute("id", "editInput" + messageId);
