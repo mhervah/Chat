@@ -1,0 +1,21 @@
+.main{
+    width: 100%;
+    margin: 100px auto;
+    text-align: center;
+    padding: auto;
+}
+
+.loginLink, .registerLink{
+    padding: 10px;
+    border-radius: 50px;
+    width: 50px;
+}
+
+input{
+    border-radius: 30px;
+    padding: 10px;
+}
+
+body{
+    background: url("/resources/Images/BlogImage_Chat.jpg");
+}

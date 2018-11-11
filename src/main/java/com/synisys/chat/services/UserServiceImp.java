@@ -2,6 +2,7 @@ package com.synisys.chat.services;
 
 import com.synisys.chat.dao.ChatDao;
 import com.synisys.chat.dao.UserDao;
+import com.synisys.chat.exceptions.UserNotFoundException;
 import com.synisys.chat.models.Pair;
 import com.synisys.chat.models.User;
 
@@ -37,10 +38,13 @@ public class UserServiceImp implements com.synisys.chat.interfaces.UserService {
     }
 
     public boolean isAdmin(User user) {
-        return user.getId() == ADMIN_ID;
+        if(user != null){
+            return user.getId() == ADMIN_ID;
+        }
+        return false;
     }
 
-    public HashMap<String,User> getUsers(){
+    public HashMap<String, User> getUsers() {
         return userDao.getUsers();
     }
 }

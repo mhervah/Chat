@@ -9,7 +9,7 @@ public class User {
     private int id;
     private String username;
 
-    private transient String password;
+    private String password;
 
     private Map<String, Integer> countNotReadMessage;
 
