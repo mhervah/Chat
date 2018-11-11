@@ -18,12 +18,12 @@ $(document).ready(function () {
                    $("#usernameValid").text("username is already in use");
                }
 
-               if(xhr.getResponseHeader("username")==="passwords don't match"){
+               if(xhr.getResponseHeader("username")==="password don't match"){
                    $("#passwordValid").text("password don't match");
 
                }
                if(xhr.getResponseHeader("username")!=="username is already in use"
-                   && xhr.getResponseHeader("username")!=="passwords don't match")
+                   && xhr.getResponseHeader("username")!=="password don't match")
                    window.location.replace("/");
            },
            error: function(xhr) {
@@ -31,11 +31,4 @@ $(document).ready(function () {
            }
        });
        });
-
-    $(window).keypress(function (e) {
-        var key = e.which || e.keyCode;
-        if (key === 13) { // 13 is enter
-            $("#registerForm").submit();
-        }
-    });
 });
