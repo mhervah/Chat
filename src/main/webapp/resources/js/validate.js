@@ -8,7 +8,7 @@ $(document).ready(function () {
             type: "post",
             data: $(this).serialize(),
             success: function (data, textStatus, xhr) {
-                if (xhr.getResponseHeader("username") === "password or username don't correct") {
+                if (xhr.getResponseHeader("valid") === "password or username isn't correct") {
                     $("#valid").text("password or username don't correct");
                 } else {
                     window.location.replace("/profile.html");
