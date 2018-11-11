@@ -6,87 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="783437e2-50cb-44f5-ad32-9cb6f0f66c51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/Images/1352930846_1-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/Images/defaultAvatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/chat_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/chat_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/chat_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/dao/MessageDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/interfaces/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/interfaces/ChatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/interfaces/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/interfaces/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/Chat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/Message.java" afterDir="false" />
+    <list default="true" id="783437e2-50cb-44f5-ad32-9cb6f0f66c51" name="Default Changelist" comment="login validation fixed">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/services/ChatServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/services/ChatServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/services/MessageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/services/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/services/UserServiceImp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/MessageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/MessageServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/UsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/UsersServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/chat.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/loginpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/loginpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/registerpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/registerpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/profile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/validate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/chat/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/constants/Constants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/dao/ChatDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/dao/UserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/exceptions/UserNotFoundException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/interfaces/ChatService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/interfaces/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/models/Message.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/models/Pair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/models/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/services/ChatServiceImp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/services/UserServiceImp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/servlets/LoginServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/servlets/MessageServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/servlets/RegisterServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/servlets/StateMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/classes/com/synisys/chat/servlets/UsersServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/lib/gson-2.8.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/loginpage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/registerpage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/resources/css/profile.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/resources/css/register.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/resources/js/profile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/resources/js/register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/resources/js/success.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/chat/resources/js/validate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/dao/MessageDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/interfaces/ChatService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/interfaces/ChatService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/models/Chat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/models/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/models/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/services/ChatServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/services/ChatServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/services/MessageService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/services/UserServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/services/UserServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/servlets/LoginServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/servlets/LoginServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/servlets/MessageServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/synisys/chat/servlets/RegisterServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/synisys/chat/servlets/RegisterServlet.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -154,14 +79,104 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1609286610">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+          <entry key="java" value="3" />
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="JAVA" value="3" />
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="9" />
+          <entry key="js" value="51" />
+          <entry key="txt" value="24" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="9" />
+          <entry key="JavaScript" value="51" />
+          <entry key="PLAIN_TEXT" value="24" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/loginpage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/models/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/LoginServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/profile.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="284">
-              <caret line="222" column="13" lean-forward="true" selection-start-line="222" selection-start-column="13" selection-end-line="222" selection-end-column="13" />
+              <caret line="222" column="13" selection-start-line="222" selection-start-column="13" selection-end-line="222" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/validate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="10" column="80" selection-start-line="10" selection-start-column="80" selection-end-line="10" selection-end-column="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/register.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="48" lean-forward="true" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -189,14 +204,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/success.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/register.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/services/ChatServiceImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/interfaces/ChatService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/validate.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/MessageServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/css/profile.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/profile.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/models/User.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/validate.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/LoginServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/register.js" />
       </list>
     </option>
   </component>
@@ -232,51 +250,53 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -285,7 +305,7 @@
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -294,43 +314,37 @@
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chat1" type="462c0819:PsiDirectoryNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Chat" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -369,6 +383,8 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="Unnamed_chat_15" />
+        <option name="HTTP_PORT" value="8086" />
+        <option name="JNDI_PORT" value="1097" />
       </server-settings>
       <predefined_log_file id="Tomcat" enabled="true" />
       <predefined_log_file id="Tomcat Catalina" enabled="true" />
@@ -376,7 +392,7 @@
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="59197" />
+        <option name="DEBUG_PORT" value="59797" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -442,15 +458,30 @@
       <updated>1541923910736</updated>
       <workItem from="1541923916428" duration="4361000" />
       <workItem from="1541936635397" duration="13033000" />
+      <workItem from="1541963255177" duration="1196000" />
     </task>
+    <task id="LOCAL-00001" summary="login validation fixed">
+      <created>1541963341856</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1541963341856</updated>
+    </task>
+    <task id="LOCAL-00002" summary="login validation fixed">
+      <created>1541963371981</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1541963371981</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17394000" />
+    <option name="totallyTimeSpent" value="18590000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -458,7 +489,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Web" order="5" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.25718608" />
+      <window_info content_ui="combo" id="Project" order="6" visible="true" weight="0.26096824" />
       <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.3295082" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -470,7 +501,7 @@
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="bottom" id="Run" order="9" weight="0.3295082" />
-      <window_info anchor="bottom" id="Debug" order="10" visible="true" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="10" visible="true" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="13" />
@@ -490,6 +521,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="login validation fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="login validation fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -566,12 +601,45 @@
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/webapp/resources/js/profile.js</url>
           <line>115</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -579,24 +647,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/javax/servlet/ServletRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="370" column="26" selection-start-line="370" selection-start-column="26" selection-end-line="370" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/javax/servlet/ServletRequest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -607,31 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/models/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/StateMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/LoginServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
@@ -642,13 +676,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/javax/servlet/http/HttpServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="634" selection-start-line="634" selection-end-line="634" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar!/javax/servlet/http/HttpServlet.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/models/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -698,13 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="17" column="74" lean-forward="true" selection-start-line="17" selection-start-column="74" selection-end-line="17" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/MessageServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
@@ -745,17 +766,52 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/profile.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/loginPage.html">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/profile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
+          <caret line="222" column="13" selection-start-line="222" selection-start-column="13" selection-end-line="222" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/loginpage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
           <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/profile.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="222" column="13" lean-forward="true" selection-start-line="222" selection-start-column="13" selection-end-line="222" selection-end-column="13" />
+        <state relative-caret-position="85">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="10" column="80" selection-start-line="10" selection-start-column="80" selection-end-line="10" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/LoginServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/synisys/chat/servlets/RegisterServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="48" lean-forward="true" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
         </state>
       </provider>
     </entry>
