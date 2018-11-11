@@ -26,19 +26,18 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
-        User user1 = new Gson().fromJson(req.getReader(), User.class);
         HttpSession session = req.getSession();
-        String username = user1.getUsername();
+
         session.setAttribute("username", username);
 
         User user = userService.getUser(username);
         setAdminCookie(user,resp);
 
-        if (user == null || !user1.getPassword().equals(user.getPassword())) {
-            resp.setHeader("valid", "password or username don't correct");
-        } else {
-            resp.getWriter().append("profile.html");
+        if (user == null || !password.equals(user.getPassword())) {
+            resp.setHeader("valid", "password or username isn't correct");
         }
     }
 

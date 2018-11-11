@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="resources/css/page.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body id="body">
 <div id="main" class="main">
@@ -13,7 +14,7 @@
         <a class="registerLink" href="/registerPage.html">Register</a>
     </nav>
     <h2>Log In</h2>
-    <form  METHOD="post">
+    <form id="loginForm" METHOD="post">
         <img src="resources/Images/register-secure-security-user-login-icon--7.png"
              alt="Smiley face" width="42" height="42">
         <input type="text" id="username" name="username" class="username" placeholder="username">
@@ -21,7 +22,7 @@
         <img src="resources/Images/login_icon__307214.png" alt="Smiley face" width="42" height="42">
         <input type="password" id="password" name="password" class="password" placeholder="password">
         <p id="passwordValid"></p>
-        <input id="load" type="button" value="Log In">
+        <input  type="submit" value="Log In">
         <div id="valid"></div>
     </form>
 </div>

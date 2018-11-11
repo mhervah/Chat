@@ -22,7 +22,7 @@ public class RegisterServlet extends HttpServlet {
             resp.setHeader("username", "username is already in use");
         } else {
             if (password.isEmpty() || !password.equals(confirmPassword)) {
-                resp.setHeader("username", "password don't match");
+                resp.setHeader("username", "passwords don't match");
             } else {
                 userService.addUser(new User(username, password));
             }
