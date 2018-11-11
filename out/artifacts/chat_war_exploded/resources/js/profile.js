@@ -113,7 +113,8 @@ function printUserAndNotReadMessage(key) {
         // }, 10000);
 
         if (!isChatsOpen.get(username2 + "Chat")) {
-            getMessages(username2);
+            // getMessages(username2);
+            renderMessages(chats, username2);
             createChat(username2);
             isChatsOpen.set(username2 + "Chat", true);
         }
@@ -133,17 +134,19 @@ function printUserAndNotReadMessage(key) {
 }
 
 function closeChat(username) {
+
     let chat = document.getElementById(username + "chat");
     chat.remove();
 }
 
 function sendMessage(receiver, text) {
-    let box = document.getElementById("box" + receiver);
-    let input = document.getElementById("input" + receiver);
+
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             getMessages(receiver);
+            let input = document.getElementById("input" + receiver);
             input.value = "";
         }
     };
@@ -159,14 +162,13 @@ function sendMessage(receiver, text) {
 
 function getMessages(user2) {
     let chat = chats.get(user2);
-    let lastMessageDate = chat && chat.length > 0 && isChatsOpen[user2 + "chat"] ? chat[chat.length - 1]["date"] : 0;
+    let lastMessageDate = chat && chat.length > 0 && isChatsOpen.get(user2 + "Chat") ? chat[chat.length - 1]["date"] : 0;
     lastMessageDate = new Date(lastMessageDate);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let data = JSON.parse(this.responseText);
             renderMessages(data, user2);
-            //console.log(data);
             if (chats.has(user2)) {
                 chats.set(user2, chats.get(user2).concat(data));
             } else {
@@ -174,13 +176,11 @@ function getMessages(user2) {
             }
         }
     };
-    xhttp.open("get", "messages?receiver=" + user2 + "&date=" + lastMessageDate.getTime(), true);
+    xhttp.open("get", "messages?receiver=" + user2 + "&date=" + lastMessageDate.getTime(), false);
     xhttp.send();
 };
 
 function renderMessages(messages, user2) {
-    var box = document.getElementById("box" + user2);
-    if (box) {
         for (let date in messages) {
             let messageDiv = document.createElement("div");
             messageDiv.setAttribute("id", "message" + messages[date]["id"]);
@@ -214,7 +214,6 @@ function renderMessages(messages, user2) {
             box.appendChild(messageDiv);
             box.scrollTop = box.scrollHeight - box.clientHeight + paragraphElement.clientHeight ;
         }
-    }
 }
 
 function editMessage(id, text, reciever) {

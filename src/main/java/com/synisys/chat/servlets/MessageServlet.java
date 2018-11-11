@@ -38,13 +38,10 @@ public class MessageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         String username1 = session.getAttribute("username").toString();
-//        Message message = new Gson().fromJson(req.getReader(), Message.class);
         String username2 = req.getParameter("receiver");
         User user1 = userService.getUser(username1);
         User user2 = userService.getUser(username2);
         Pair pair = new Pair(user1, user2);
-
-//        Long milliseconds = Long.valueOf(req.getParameter("date"));
 
         List<Message> chat = chatService.getChat(pair);
         if (chat == null) {
@@ -59,8 +56,8 @@ public class MessageServlet extends HttpServlet {
                 }
             }
 
-            List<Message> messagesFromDate = chatService.getChatFromDate(pair,
-                    Long.valueOf(req.getParameter("date")));
+            List<Message> messagesFromDate =
+                    chatService.getChatFromDate(pair, Long.valueOf(req.getParameter("date")));
             List<Message> messagesDeleted = chatService.getDeleted(pair);
             List<Message> messagesEdited = chatService.getEdited(pair);
 
