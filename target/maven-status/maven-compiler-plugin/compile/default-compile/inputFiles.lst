@@ -1,0 +1,16 @@
+C:\Projects\Chat1\src\main\java\com\synisys\chat\models\Pair.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\servlets\UsersServlet.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\interfaces\UserService.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\services\UserServiceImp.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\services\PairService.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\servlets\MessageServlet.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\exceptions\UserNotFoundException.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\dao\UserDao.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\services\ChatServiceImp.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\dao\ChatDao.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\interfaces\ChatService.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\constants\Constants.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\servlets\LoginServlet.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\servlets\RegisterServlet.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\models\Message.java
+C:\Projects\Chat1\src\main\java\com\synisys\chat\models\User.java

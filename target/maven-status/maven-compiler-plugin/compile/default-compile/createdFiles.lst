@@ -1,0 +1,16 @@
+com\synisys\chat\services\UserServiceImp.class
+com\synisys\chat\interfaces\ChatService.class
+com\synisys\chat\constants\Constants.class
+com\synisys\chat\services\PairService.class
+com\synisys\chat\dao\ChatDao.class
+com\synisys\chat\servlets\RegisterServlet.class
+com\synisys\chat\interfaces\UserService.class
+com\synisys\chat\models\User.class
+com\synisys\chat\servlets\UsersServlet.class
+com\synisys\chat\dao\UserDao.class
+com\synisys\chat\services\ChatServiceImp.class
+com\synisys\chat\models\Pair.class
+com\synisys\chat\exceptions\UserNotFoundException.class
+com\synisys\chat\servlets\LoginServlet.class
+com\synisys\chat\servlets\MessageServlet.class
+com\synisys\chat\models\Message.class

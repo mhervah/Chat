@@ -107,8 +107,13 @@ function renderUsers(data) {
                 document.getElementById("chats").appendChild(div);
 
 
-                if(chats.get(username2))
-                    renderMessages(chats.get(username2),username2);
+                if(chats.get(username2)){
+                    let map ={
+                        "new":chats.get(username2)
+                    };
+                    renderMessages(map,username2);
+                }
+
                 chatopen = true;
             }
         };
@@ -144,7 +149,6 @@ function getMessages(user2) {
 
     let lastMessageDate = chat && chat.length > 0 ? chat[chat.length - 1]["date"] :  0;
     lastMessageDate = new Date(lastMessageDate);
-    //console.log(typeof lastMessageDate);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -183,8 +187,11 @@ function renderMessages(messages, user2) {
                     for (let message of chats.get(user2)) {
                         if (messages["edited"][i]["id"] === message["id"]) {
                             if (messages["edited"][i]["text"] !== message["text"]) {
+
+                                message["text"]= messages["edited"][i]["text"];
                                 let editedMessageText = document.getElementById(message["id"]);
                                 if(editedMessageText){
+
                                     editedMessageText.innerText = messages["edited"][i]["text"];
                                     let img = document.createElement("img");
                                     img.setAttribute("src", "resources\\images\\hippo.png");
@@ -200,6 +207,7 @@ function renderMessages(messages, user2) {
             }
         }
         if(messages["new"]){
+            console.log(1);
             for (let i = 0; i < messages["new"].length; i++) {
                 let messageDiv = document.createElement("div");
                 messageDiv.setAttribute("id", "message" + messages["new"][i]["id"]);
@@ -223,7 +231,6 @@ function renderMessages(messages, user2) {
                 messageDiv.appendChild(editLink);
                 editLink.onclick = function (e) {
                     let id = e.path[1].id;
-
                     id = id.substr("message".length, id.length - 6);
                     edit(e, user2, id);
                 };
@@ -250,8 +257,6 @@ function renderMessages(messages, user2) {
     }
 }
 function editMessage(id, text, reciever) {
-
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

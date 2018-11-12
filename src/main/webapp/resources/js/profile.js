@@ -187,8 +187,11 @@ function renderMessages(messages, user2) {
                     for (let message of chats.get(user2)) {
                         if (messages["edited"][i]["id"] === message["id"]) {
                             if (messages["edited"][i]["text"] !== message["text"]) {
+
+                                message["text"]= messages["edited"][i]["text"];
                                 let editedMessageText = document.getElementById(message["id"]);
                                 if(editedMessageText){
+
                                     editedMessageText.innerText = messages["edited"][i]["text"];
                                     let img = document.createElement("img");
                                     img.setAttribute("src", "resources\\images\\hippo.png");
@@ -254,8 +257,6 @@ function renderMessages(messages, user2) {
     }
 }
 function editMessage(id, text, reciever) {
-
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
