@@ -1,25 +1,22 @@
-function validate() {
-    var username = document.getElementsByClassName("username")[0].value;
-    var password = document.getElementsByClassName("password")[0].value;
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(this.getResponseHeader("validation")==="part"){
-                document.getElementsByClassName("password")[0].value="";
-            }else if(this.getResponseHeader("validation")==="no"){
-                document.getElementsByClassName("username")[0].value="";
-                document.getElementsByClassName("password")[0].value="";
+$(document).ready(function () {
+    $("#loginForm").on("submit", function (e) {
+        $("#username").text("");
+        $("#password").text("");
+        e.preventDefault();
+        $.ajax({
+            url: "login",
+            type: "post",
+            data: $(this).serialize(),
+            success: function (data, textStatus, xhr) {
+                if (xhr.getResponseHeader("valid") === "password or username isn't correct") {
+                    $("#valid").text("password or username don't correct");
+                } else {
+                    window.location.replace("profile.html");
+                }
+            },
+            error: function (xhr) {
+                alert("error occurred");
             }
-        }
-    };
-
-    xhttp.open("post", "validate", true);
-    xhttp.setRequestHeader("Content-type","json/application");
-    var user={
-        "username":username,
-        "password":password
-    };
-
-    xhttp.send(JSON.stringify(user));
-}
+        });
+    });
+});

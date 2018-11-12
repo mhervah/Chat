@@ -1,40 +1,33 @@
 /**
  * Created by mher.vahramyan on 11/2/2018.
  */
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
+
 let chats = new Map();
-let username = getCurrentUser();
+let isChatsOpen = new Map();
+let username;
+let users;
+let notReadMessage = [];
+
 $(document).ready(function () {
 
-
+    getCurrentUser();
+    isRead();
     getUsers();
 
 });
+
 function getCurrentUser() {
-    let username;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-
-            let data = JSON.parse(this.responseText);
-            document.getElementById("username").innerText = data;
-            username = data;
+            username = JSON.parse(this.responseText);
+            document.getElementById("owner").innerText = username;
         }
     };
     xhttp.open("get", "/login", false);
     xhttp.send();
-    return username;
-
 }
+
 function getUsers() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -46,6 +39,7 @@ function getUsers() {
     xhttp.open("get", "allusers", true);
     xhttp.send();
 }
+
 
 function renderUsers(data) {
     var list = document.getElementById("usersList");
@@ -144,6 +138,70 @@ function sendMessage(reciever, text) {
     xhttp.send(JSON.stringify(messageInfo));
 
 }
+
+
+function renderUsers(data) {
+    document.getElementById("owner").innerText = username;
+    var list = document.getElementById("usersList");
+    list.innerHTML = "";
+    for (let key in data) {
+        var li = printUserAndNotReadMessage(key, list);
+        list.appendChild(li);
+    }
+}
+
+
+function click(e) {
+    var username2 = e.path[1].id.slice(0,-4);
+    let text = document.getElementById("input" + username2).value;
+    if (text !== "") {
+        sendMessage(username2, text);
+    }
+};
+
+function printUserAndNotReadMessage(key) {
+
+    var li = document.createElement("li");
+    var spanCount = document.createElement("span");
+    spanCount.setAttribute("class", "span");
+    var spanName = document.createElement("span");
+
+
+    spanName.onclick = function (e) {
+
+        let username2 = e.toElement.innerHTML;
+        let interval = setInterval(function () {
+            getMessages(username2);
+        }, 2000);
+
+        if (!isChatsOpen.get(username2 + "Chat")) {
+            createChat(username2);
+            if (chats.has(username2)) {
+                renderMessages(chats.get(username2), username2);
+            } else {
+                getMessages(username2);
+            }
+            isChatsOpen.set(username2 + "Chat", true);
+        }
+    };
+
+    li.appendChild(spanName);
+    li.setAttribute("id", key);
+    li.setAttribute("name", key);
+    spanCount.setAttribute("name", key);
+    spanName.setAttribute("name", key);
+    li.appendChild(spanCount);
+    var notReadMessageElement = notReadMessage[key];
+    if (notReadMessageElement && (key in notReadMessage)) {
+        spanCount.innerText = notReadMessageElement;
+    }
+    spanName.innerText = key;
+    return li;
+}
+
+
+
+
 function getMessages(user2) {
     let chat = chats.get(user2);
 
@@ -256,74 +314,84 @@ function renderMessages(messages, user2) {
 
     }
 }
-function editMessage(id, text, reciever) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            for (let message of chats.get(reciever)) {
-                if (message["id"] === id) {
-                    message["text"] = text;
-                    document.getElementById(id).innerText = text;
-                    return;
+        function editMessage(id, text, reciever) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    for (let message of chats.get(reciever)) {
+                        if (message["id"] === id) {
+                            message["text"] = text;
+                            document.getElementById(id).innerText = text;
+                            return;
+                        }
+                    }
                 }
-            }
+            };
+            xhttp.open("put", "/messages", true);
+            let messageInfo = {
+                "id": id,
+                "text": text,
+                "reciever": reciever
+
+            };
+            xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhttp.send(JSON.stringify(messageInfo));
+
         }
-    };
-    xhttp.open("put", "/messages", true);
-    let messageInfo = {
-        "id": id,
-        "text": text,
-        "reciever": reciever
+        function deleteMessage(id, reciever) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let deletedMessage = document.getElementById("message"+id);
+                    deletedMessage.parentNode.removeChild(deletedMessage);
+                }
+            };
+            xhttp.open("delete", "/messages", true);
+            let messageInfo = {
+                "id": id,
+                "reciever": reciever
 
-    };
-    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhttp.send(JSON.stringify(messageInfo));
+            };
+            xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhttp.send(JSON.stringify(messageInfo));
 
-}
+        }
 
-function deleteMessage(id, reciever) {
+function isRead() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            let deletedMessage = document.getElementById("message"+id);
-            deletedMessage.parentNode.removeChild(deletedMessage);
+            notReadMessage = JSON.parse(this.responseText);
         }
     };
-    xhttp.open("delete", "/messages", true);
-    let messageInfo = {
-        "id": id,
-        "reciever": reciever
-
-    };
-    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhttp.send(JSON.stringify(messageInfo));
-
+    xhttp.open("get", "state", true);
+    xhttp.send();
 }
 
-function edit(e, user2, messageId) {
-    let messageDiv =  document.getElementById("message" + messageId);
-    let paragraphElement = document.getElementById(messageId);
+    function edit(e, user2, messageId) {
+        let messageDiv =  document.getElementById("message" + messageId);
+        let paragraphElement = document.getElementById(messageId);
 
 
-    let text = paragraphElement.textContent;
+        let text = paragraphElement.textContent;
 
-    let editInput = document.createElement("input");
-    editInput.setAttribute("type", "text");
-    editInput.setAttribute("id", "editInput" + messageId);
-    editInput.value = text;
-    paragraphElement.innerText = "";
+        let editInput = document.createElement("input");
+        editInput.setAttribute("type", "text");
+        editInput.setAttribute("id", "editInput" + messageId);
+        editInput.value = text;
+        paragraphElement.innerText = "";
 
-    let saveButton = document.createElement("input");
-    saveButton.setAttribute("type", "button");
-    saveButton.setAttribute("id", "save" + messageId);
-    saveButton.setAttribute("value", "Save");
-    paragraphElement.appendChild(editInput);
-    saveButton.onclick = function (e) {
-        let newText = document.getElementById("editInput" + messageId).value;
-        editMessage(messageId, newText, user2);
-        paragraphElement.innerText = newText;
-    };
-    paragraphElement.appendChild(saveButton);
+        let saveButton = document.createElement("input");
+        saveButton.setAttribute("type", "button");
+        saveButton.setAttribute("id", "save" + messageId);
+        saveButton.setAttribute("value", "Save");
+        paragraphElement.appendChild(editInput);
+        saveButton.onclick = function (e) {
+            let newText = document.getElementById("editInput" + messageId).value;
+            editMessage(messageId, newText, user2);
+            paragraphElement.innerText = newText;
+        };
+        paragraphElement.appendChild(saveButton);
 
 
-}
+    }

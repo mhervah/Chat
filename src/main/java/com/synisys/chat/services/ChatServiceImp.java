@@ -9,13 +9,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mher.vahramyan on 11/1/2018.
  */
 public class ChatServiceImp implements ChatService {
     public static ChatServiceImp chatService = new ChatServiceImp();
-    ChatDao chatDao;
+    private ChatDao chatDao;
 
     private ChatServiceImp() {
         chatDao = new ChatDao();
@@ -50,7 +51,7 @@ public class ChatServiceImp implements ChatService {
     public List<Message> getChatFromDate(Pair pair, long date) {
         List<Message> list = new ArrayList<>();
         for (Message message : getChat(pair)) {
-            if (message.getDate() > date && !message.isDeleted()) {
+            if (date < message.getDate()) {
                 list.add(message);
             }
         }
@@ -60,8 +61,8 @@ public class ChatServiceImp implements ChatService {
     @Override
     public List<Message> getDeleted(Pair pair) {
         List<Message> list = new ArrayList<>();
-        for (Message message:chatService.getChat(pair)) {
-            if(message.isDeleted())
+        for (Message message : chatService.getChat(pair)) {
+            if (message.isDeleted())
                 list.add(message);
         }
         return list;
@@ -70,10 +71,28 @@ public class ChatServiceImp implements ChatService {
     @Override
     public List<Message> getEdited(Pair pair) {
         List<Message> list = new ArrayList<>();
-        for (Message message:chatService.getChat(pair)) {
-            if(message.isEdited())
+        for (Message message : chatService.getChat(pair)) {
+            if (message.isEdited())
                 list.add(message);
         }
         return list;
     }
+
+    @Override
+    public int notReadMessage(Pair pair, String receiver) {
+        int count = 0;
+        List<Message> chat = chatDao.getChat(pair); //message of pair
+        for (Message message : chat) {
+            if (!message.isSender(receiver)) {
+                count++;
+            }
+        }
+        return count++; // receiver in pair not readed message
+    }
+
+    @Override
+    public Map<String, Integer> listNotReadedMessageForSender(String sender) {
+        return chatDao.listNotReadedMessageForSender(sender);
+    }
 }
+

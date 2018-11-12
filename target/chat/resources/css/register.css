@@ -1,17 +1,5 @@
-.main{
-    width: 50%;
-    margin: 100px auto;
-    background: dodgerblue;
-    text-align: left;
-    padding: 10px;
-}
-
-.loginLink{
-    background-color: orangered;
-    padding: 10px;
-}
-
-.registerLink{
-    background-color: dodgerblue;
-    padding: 10px;
+body{
+    background: url("/resources/Images/Aghstafa_su_anbari_-1.jpg");
+    height: 100%;
+    background-size: cover;
 }

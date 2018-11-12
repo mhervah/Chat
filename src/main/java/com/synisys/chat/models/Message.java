@@ -1,35 +1,48 @@
 package com.synisys.chat.models;
 
-import com.synisys.chat.models.User;
-
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 public class Message implements Serializable {
     private int id;
     private static int counter = 0;
     private String text;
     private String sender;
-    private String reciever;
+    private String receiver;
     private long date;
     private boolean edited;
     private boolean deleted;
+    private boolean isRead;
 
     public Message() {
         this.id = counter++;
     }
 
-    public Message(String text, String sender, String reciever, long date) {
+    public Message(String text, String sender, String receiver, long date) {
         this.text = text;
         this.sender = sender;
-        this.reciever = reciever;
-        this.reciever = reciever;
+        this.receiver = receiver;
+        this.receiver = receiver;
         this.date = date;
         this.id = counter++;
     }
 
-    public boolean isDeleted() {
+    public Message(int id, String text, String receiver) {
+        this.id = id;
+        this.text = text;
+        this.receiver = receiver;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public boolean isDeleted()
+    {
         return deleted;
     }
 
@@ -49,8 +62,8 @@ public class Message implements Serializable {
         this.edited = edited;
     }
 
-    public String getReciever() {
-        return reciever;
+    public String getReceiver() {
+        return receiver;
     }
 
     public String getText() {
@@ -77,5 +90,15 @@ public class Message implements Serializable {
         this.text = text;
     }
 
+    public void setRead() {
+        isRead = true;
+    }
 
+    public boolean getIsRead() {
+        return isRead;
+    }
+
+    public boolean isSender(String username) {
+        return this.sender.equals(username);
+    }
 }

@@ -7,7 +7,7 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <welcome-file-list>
-    <welcome-file>loginpage.html</welcome-file>
+    <welcome-file>loginPage.html</welcome-file>
   </welcome-file-list>
 
     <servlet>
@@ -19,13 +19,23 @@
         <servlet-class>com.synisys.chat.servlets.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>allusers</servlet-name>
+        <servlet-name>allUsers</servlet-name>
         <servlet-class>com.synisys.chat.servlets.UsersServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>messages</servlet-name>
         <servlet-class>com.synisys.chat.servlets.MessageServlet</servlet-class>
     </servlet>
+
+
+    <servlet>
+        <servlet-name>state</servlet-name>
+        <servlet-class>com.synisys.chat.servlets.StateMessage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>state</servlet-name>
+        <url-pattern>/state</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -36,8 +46,8 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>allusers</servlet-name>
-        <url-pattern>/allusers</url-pattern>
+        <servlet-name>allUsers</servlet-name>
+        <url-pattern>/allUsers</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>messages</servlet-name>

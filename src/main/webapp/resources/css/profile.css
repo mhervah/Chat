@@ -1,3 +1,9 @@
+body{
+    background: url("/resources/Images/1352930846_1-1.jpg");
+    height: 100%;
+    background-size: cover;
+}
+
 .chat{
     border: 2px solid black;
     position: relative;
@@ -6,6 +12,14 @@
     height: 300px;
     float: right;
 }
+
+.chats {
+    position: fixed;
+    scrollbar-3dlight-color: aqua;
+    scroll-padding-bottom: initial;
+    ::-webkit-scrollbar-button
+}
+
 .messageInput{
     position: absolute;
     bottom: 0;
@@ -41,16 +55,18 @@
     max-height: 600px;
     overflow: auto;
 }
+
 .users ul{
     list-style: none;
 }
 .chats{
     position: absolute;
-
     width: 100%;
     z-index: -1;
     bottom: 0;
     right: 0;
+    scrollbar-shadow-color: aquamarine;
+    scroll-padding-inline-end: initial;
 }
 .messageDiv{
     padding: 5px;
@@ -91,4 +107,14 @@
     color: white;
     border-radius: 50%;
     font-size: 12px;
+}
+
+.span{
+    text-align: center;
+    color: grey;
+    text-decoration: aliceblue;
+    margin-left: 40px;
+    margin-right: 20px;
+    width: 40px;
+    text-align: center;
 }

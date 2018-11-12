@@ -2,7 +2,6 @@ package com.synisys.chat.servlets;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.synisys.chat.dao.ChatDao;
 import com.synisys.chat.models.Message;
 import com.synisys.chat.models.Pair;
 import com.synisys.chat.models.User;
@@ -22,39 +21,43 @@ import static com.synisys.chat.services.UserServiceImp.userService;
 public class MessageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        Gson gson = new Gson();
-        Message message = gson.fromJson(req.getReader(), Message.class);
         HttpSession session = req.getSession();
         String username1 = session.getAttribute("username").toString();
+        Gson gson = new Gson();
+        Message message = gson.fromJson(req.getReader(), Message.class);
         message.setSender(username1);
-        String username2 = message.getReciever();
+        String username2 = message.getReceiver();
         User user1 = userService.getUser(username1);
         User user2 = userService.getUser(username2);
-        chatService.getChat(new Pair(user1,user2)).add(message);
-
-
-       // messageService.addMessage(message);
+        chatService.getChat(new Pair(user1, user2)).add(message);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         String username1 = session.getAttribute("username").toString();
-        String username2 = req.getParameter("user2");
+        String username2 = req.getParameter("receiver");
         User user1 = userService.getUser(username1);
         User user2 = userService.getUser(username2);
-        Pair pair = new Pair(user1,user2);
-        Long miliseconds = Long.valueOf(req.getParameter("date"));
-
-        if(chatService.getChat(pair) == null)
-        {
+        Pair pair = new Pair(user1, user2);
+        long milliseconds = Long.valueOf(req.getParameter("date"));
+        List<Message> chat = chatService.getChat(pair);
+        if (chat == null) {
             chatService.addChat(pair);
+            chat = chatService.getChat(pair);
+        } else {
+            Iterator<Message> iterator = chat.iterator();
+            while (iterator.hasNext()) {
+                Message next = iterator.next();
+                if (next.isSender(username2)) {
+                    next.setRead();
+                }
+            }
         }
+
         Map<String,List> map = new HashMap<>();
 
-        List<Message> messagesFromDate = chatService.getChatFromDate(pair,miliseconds);
+        List<Message> messagesFromDate = chatService.getChatFromDate(pair,milliseconds);
         List<Message> messagesDeleted =  chatService.getDeleted(pair);
         List<Message> messagesEdited = chatService.getEdited(pair);
         map.put("new",messagesFromDate);
@@ -94,4 +97,3 @@ public class MessageServlet extends HttpServlet {
         chatService.removeMessage(pair,id);
     }
 }
-

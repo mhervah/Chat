@@ -7,8 +7,8 @@ import com.synisys.chat.models.User;
  */
 public interface UserService {
     void addUser(User user);
+
     void removeUser(User user);
 
     User getUser(String username);
-
 }

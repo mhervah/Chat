@@ -8,37 +8,27 @@ $(document).ready(function () {
        $("#passwordValid").text("");
        $("#usernameValid").text("");
        e.preventDefault();
-       if($("#passwordInput").val()!==$("#repeatPasswordInput").val()){
-           $("#repeatPasswordValid").text("Passwords should match");
-       }
-       else{
-           e.preventDefault();
-           $.ajax({
-               url: "register",
-               type: "post",
-               data: $(this).serialize(),
-               success: function(data, textStatus,xhr) {
-                   console.log("got");
+       $.ajax({
+           url: "register",
+           type: "post",
+           data: $(this).serialize(),
+           success: function(data, textStatus,xhr) {
 
-                   if(xhr.getResponseHeader("username")==="not valid"){
-
-                       $("#usernameValid").text("Username is not valid");
-                   }
-
-                   if(xhr.getResponseHeader("password")==="not valid"){
-                       $("#passwordValid").text("Password is not valid");
-
-
-                   }
-                   if(xhr.getResponseHeader("username")!=="not valid" && xhr.getResponseHeader("password")!=="not valid")
-                       window.location.replace("/");
-               },
-               error: function(xhr) {
-                   alert("error occurred");
+               if(xhr.getResponseHeader("username")==="username is already in use"){
+                   $("#usernameValid").text("username is already in use");
                }
-           });
-       }
 
+               if(xhr.getResponseHeader("username")==="password don't match"){
+                   $("#passwordValid").text("password don't match");
 
+               }
+               if(xhr.getResponseHeader("username")!=="username is already in use"
+                   && xhr.getResponseHeader("username")!=="password don't match")
+                   window.location.replace("/");
+           },
+           error: function(xhr) {
+               alert("error occurred");
+           }
+       });
        });
 });
