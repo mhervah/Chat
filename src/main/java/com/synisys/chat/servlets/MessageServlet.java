@@ -22,11 +22,10 @@ import static com.synisys.chat.services.UserServiceImp.userService;
 public class MessageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        Gson gson = new Gson();
-        Message message = gson.fromJson(req.getReader(), Message.class);
         HttpSession session = req.getSession();
         String username1 = session.getAttribute("username").toString();
+        Gson gson = new Gson();
+        Message message = gson.fromJson(req.getReader(), Message.class);
         message.setSender(username1);
         String username2 = message.getReceiver();
         User user1 = userService.getUser(username1);
@@ -61,10 +60,10 @@ public class MessageServlet extends HttpServlet {
             List<Message> messagesDeleted = chatService.getDeleted(pair);
             List<Message> messagesEdited = chatService.getEdited(pair);
 
-            List<Message> sentMessageList = new ArrayList<>();
+            Set<Message> sentMessageList = new HashSet<>();
             sentMessageList.addAll(messagesFromDate);
             sentMessageList.addAll(messagesDeleted);
-            sentMessageList.addAll(messagesEdited);
+            //sentMessageList.addAll(messagesEdited);
 
             resp.setContentType("application/json");
             String json = new Gson().toJson(sentMessageList, ArrayList.class);
@@ -81,12 +80,13 @@ public class MessageServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
         JsonObject json = gson.fromJson(req.getReader(), JsonObject.class);
+        String text = json.get("text").getAsString();
         int id = json.get("id").getAsInt();
         HttpSession session = req.getSession();
         User sender = userService.getUser(session.getAttribute("username").toString());
-        User reciever = userService.getUser(json.get("reciever").getAsString());
-        Pair pair = new Pair(sender, reciever);
-        chatService.editMessage(pair, id, json.get("text").getAsString());
+        User receiver = userService.getUser(json.get("receiver").getAsString());
+        Pair pair = new Pair(sender, receiver);
+        chatService.editMessage(pair, id, text);
     }
 
     @Override

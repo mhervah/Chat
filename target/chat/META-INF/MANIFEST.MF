@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: xana vahramyan
+Built-By: mery.manukyan
 Created-By: IntelliJ IDEA
-Build-Jdk: 11
+Build-Jdk: 1.8.0_102
 

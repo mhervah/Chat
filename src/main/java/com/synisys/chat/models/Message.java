@@ -27,6 +27,16 @@ public class Message implements Serializable {
         this.id = counter++;
     }
 
+    public Message(int id, String text, String receiver) {
+        this.id = id;
+        this.text = text;
+        this.receiver = receiver;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
